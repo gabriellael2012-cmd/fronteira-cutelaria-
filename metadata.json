@@ -1,0 +1,6 @@
+{
+  "name": "Fronteira Cutelaria",
+  "description": "Experiência digital premium para cutelaria artesanal. Peças exclusivas, lâminas forjadas à mão, catálogo e personalização com precisão em cada detalhe.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

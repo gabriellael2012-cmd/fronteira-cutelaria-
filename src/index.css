@@ -1,0 +1,236 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Cinzel', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #000000;
+    color: #F4F4F5;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.03em;
+  }
+}
+
+/* Custom scrollbar in Black + Orange */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272A;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #EA580C;
+}
+
+/* 1. Global Navigation Cinematic Page Reveal (cubic-bezier(0.22, 1, 0.36, 1)) */
+@keyframes cinematicPageReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cinematic-page-reveal,
+.page-reveal {
+  opacity: 0;
+  animation: cinematicPageReveal 400ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Global fade-in keyframes used throughout the application */
+@keyframes globalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.global-fade-in,
+.page-enter {
+  animation: globalFadeIn 350ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* 2. Cinematic Blade Cut Trajectory Sweep across Viewport (0ms to 180ms) */
+@keyframes cinematicBladeSweep {
+  0% {
+    transform: translateX(-40vw);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(190vw);
+    opacity: 0;
+  }
+}
+
+.animate-cinematic-blade-sweep {
+  animation: cinematicBladeSweep 180ms cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+/* 3. Incision Seam Flash along Cut Boundary (0ms to 240ms) */
+@keyframes cinematicSeamGlow {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 1200;
+  }
+  20% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.9;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    opacity: 0;
+    stroke-dashoffset: -300;
+  }
+}
+
+.animate-cinematic-seam {
+  stroke-dasharray: 1200;
+  animation: cinematicSeamGlow 220ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: opacity, stroke-dashoffset;
+}
+
+/* 4. Blade Tip Spark Gleam (Cold Steel reflection) */
+@keyframes cinematicSparkGleam {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.3) rotate(0deg);
+  }
+  45% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.3) rotate(90deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.2) rotate(180deg);
+  }
+}
+
+.animate-cinematic-spark {
+  animation: cinematicSparkGleam 180ms ease-out forwards;
+}
+
+/* 5. Physical Screen Content Separation (120ms to 280ms) */
+@keyframes cinematicSplitTop {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(8px, -10px);
+  }
+}
+
+.animate-cinematic-split-top {
+  animation: cinematicSplitTop 140ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform;
+}
+
+@keyframes cinematicSplitBottom {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-8px, 10px);
+  }
+}
+
+.animate-cinematic-split-bottom {
+  animation: cinematicSplitBottom 140ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform;
+}
+
+/* 2. Sequential Knife Mosaic Animation */
+@keyframes knifeTileFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.knife-tile-enter,
+.knife-item-enter {
+  opacity: 0;
+  animation: knifeTileFadeIn 260ms ease-out forwards;
+}
+
+/* Sequential element fade-in for hero callouts */
+.hero-fade-1 {
+  opacity: 0;
+  animation: globalFadeIn 320ms ease-out forwards;
+  animation-delay: 120ms;
+}
+
+.hero-fade-2 {
+  opacity: 0;
+  animation: globalFadeIn 320ms ease-out forwards;
+  animation-delay: 240ms;
+}
+
+/* 3. Smooth slide transition for product detail */
+@keyframes productSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-product-slide {
+  animation: productSlideUp 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 4. Accessibility: Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+  .knife-item-enter {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
